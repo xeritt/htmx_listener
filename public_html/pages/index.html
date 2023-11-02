@@ -1,0 +1,28 @@
+<div>
+    <h1>Vanilla JavaScript Library Listener v 1.0</h1>
+    <p>Все управляемые теги имеют уникальные id.</p>
+    <p>addListener - основной метод добавления обработчика для тега.</p>
+    <p>addLoadText - метод динамической загрузки по fetch с удаленного ресурса.</p>
+    <p>loadDynamic - динамическая загрузка по timeout после загрузки основной страницы.</p>
+    <code>
+         &lt;button id="button_load_htmx" class="loadText" data-url="test.html" 
+                    data-target="htmx" data-timeout="0"&gt;<br />
+        Load htmx<br />
+        &lt;/button&gt;<br />
+        &lt;div id="htmx"&gt;&lt;/div&gt;
+    </code>
+    
+    <code>
+     &lt;div id="Mymenu" data-target="page" class="loadTextMenu"&gt;<br />
+        &lt;button data-href="pages/index.html"&gt;Home&lt;/button&gt;<br />
+        &lt;button data-url="pages/about.php" data-method="post" data-body="{i:100}" data-type="application/json" &gt;About&lt;/button&gt;<br />
+        &lt;button data-url="pages/contact.html"&gt;Contact&lt;/button&gt;<br />
+        &lt;button data-url="pages/blog.html"&gt;Blog&lt;/button&gt;<br />
+    &lt;/div&gt;<br />    
+    &lt;div id="page">&lt;/div&gt;<br />
+    </code>
+    <code>
+        &lt;button data-href="http://localhost" data-confirm="Do you realy want?" class="linkButton" title="Localhost"&gt;Home&lt;/button&gt;<br />
+        &lt;a data-href="https://ya.ru/" data-confirm="Do you realy want?" class="linkButton" title="Ya.ru" href="#" target="_blank"&gt;Home&lt;/a&gt;<br />
+    </code>
+</div>

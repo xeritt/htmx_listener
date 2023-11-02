@@ -1,0 +1,15 @@
+button {
+    padding: 5px;
+}
+
+.pressed {
+    color:#f36d33;
+    /*background-color: white;*/
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.linkButton:hover{
+    cursor: pointer;
+}
+

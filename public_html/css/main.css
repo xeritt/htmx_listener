@@ -1,0 +1,37 @@
+#content{ 
+    text-align: center;
+    /*display: flex;*/
+    justify-content: center;
+}    
+
+#page{
+    border: 0px solid green;
+    padding: 5px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+code {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #f36d33;
+    border-radius: 0.3rem;
+    color: #666;
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;
+    white-space: nowrap;
+    text-align: left;
+}
+
+
+

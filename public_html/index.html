@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO Site Vanilla JavaScript</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style contenteditable="true">
+            @import "css/index.css";
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <div id="Mymenu" data-target="page" class="loadTextMenu">
+                <button data-href="/HTML5Application/index.html" class="pressed">Home</button>
+                <button data-url="http://localhost/about.php" data-method="post" data-body="{i:100}" data-type="application/json">About</button>
+                <button data-url="/HTML5Application/pages/download.html">Download</button>
+                <button data-url="/HTML5Application/pages/blog.html">Blog</button>
+                <button data-url="/HTML5Application/pages/contact.html">Contact</button>
+                <button data-href="/HTML5Application/test.html">Test</button>
+            </div>    
+            <div id="page"></div>
+            
+            <button data-href="http://localhost" data-confirm="Do you realy want?" class="linkButton" title="Localhost">Home</button>
+            <a data-href="https://ya.ru/" data-confirm="Do you realy want?" class="linkButton" title="Ya.ru" href="#" target="_blank">Home</a>
+            <img data-href="https://ya.ru/" data-confirm="Do you realy want????" class="linkButton" src="user.svg" />
+        </div>
+        
+        <script type="module" src="js/index.js"></script>
+    </body>
+</html>
