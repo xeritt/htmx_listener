@@ -66,7 +66,7 @@ export function addLoadText(itemId, container, url, timeout = 0) {
 }
 
 export async function loadDynamic(container, url, timeout = 0) {
-    console.log('Start Dyn Load')
+    console.log('Start Dyn Load');
     let div = document.querySelector(container);
     if (!div) {
         console.error('No container ' + container + ' to load');
@@ -83,7 +83,7 @@ export async function loadDynamic(container, url, timeout = 0) {
                 //addLoadAll();
                 requestOnLoad = true;
             });
-    console.log('End Dyn Load')
+    console.log('End Dyn Load');
 }
 
 export function menuReset(menu) {
