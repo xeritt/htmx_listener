@@ -1,6 +1,7 @@
 let debug = true;
 export function setDebug(val){ debug = val; } 
 export function log(mes) {if (debug) console.log(mes) }
+export function logerr(mes) {if (debug) console.error(mes) }
 export function sleep(ms) {return new Promise(resolve => setTimeout(resolve, ms));}
 
 /**
@@ -53,13 +54,19 @@ export function addDynamicElements(delay) {
 }
 
 export function addListener(itemId, resolve, eventName = 'click') {
-    let button = document.getElementById(itemId);
-    if (button)
-        button.addEventListener(eventName, resolve);
+    let element = document.getElementById(itemId);
+    if (!element) return;
+    if (element.dataset.listener) return;
+    element.addEventListener(eventName, resolve);
+    element.dataset.listener = true;
 }
 
 export function addListenerElement(element, resolve, eventName = 'click') {
-    element.addEventListener(eventName, resolve);
+    if (!element.dataset.listener){
+        log('Element Add Listener = ' + element.id);
+        element.addEventListener(eventName, resolve);
+        element.dataset.listener = true;
+    }    
 }
 
 export function prepareParams(button) {
@@ -88,7 +95,8 @@ export function prepareParams(button) {
 export function addLoadText(itemId, container, url, timeout = 0) {
     let button = document.getElementById(itemId);
     if (!button) return;
-    button.addEventListener('click', (e) => {
+    //button.addEventListener('click', (e) => {
+    addListenerElement(button, (e) => {                
         e.preventDefault();
         //e.classList.add("pressed");
         let div = document.getElementById(container);
@@ -158,7 +166,8 @@ export function addLoadTextMenuItem(menu, item, container, url, timeout = 0) {
     //log('pressed reaction ' + url);
     //loadDynamic('#' + container, url, 0);
     //}
-    button.addEventListener('click', (e) => {
+    //button.addEventListener('click', (e) => {
+    addListenerElement(button, (e) => {        
         log('Click menu');
         try {
             e.preventDefault();
@@ -326,7 +335,9 @@ export function checkMenuItemSelect(className = '.aside-menu'){
 export function addLoadDialog(itemId, container, url, timeout = 0) {
     let button = document.getElementById(itemId);
     if (!button) return;
-    button.addEventListener('click', (e) => {
+    //if (button.getAttribute('listener') === 'true') return;
+    addListenerElement(button, (e) => {
+    //button.addEventListener('click', (e) => {
         e.preventDefault();
         //e.classList.add("pressed");
         let div = document.getElementById(container);
@@ -343,10 +354,24 @@ export function addLoadDialog(itemId, container, url, timeout = 0) {
                 .then(async (text) => {
                     await sleep(timeout);
                     div.innerHTML = text;
-                    //addLoadAll();
-                    //requestOnLoad = true;
-                    setRequestOnLoad(true);
+
+                    const scriptName = itemId + '-script';
+                    let dialogScript = document.getElementById(scriptName);
+                    if (dialogScript == null){
+                        let dialogUrl = url + '.js';
+                        log('Load Dialog script ' + scriptName);
+                        try {
+                            let sc = document.createElement('script');
+                            sc.setAttribute('id', scriptName);
+                            sc.setAttribute('src', dialogUrl);
+                            sc.setAttribute("type", "text/javascript"); 
+                            document.head.appendChild(sc);
+                        } catch (error) {
+                          logerr(error);
+                        }
+                    }
                     
+                    setRequestOnLoad(true);
                     const dialog = document.getElementById(container);
                     log('Load dialog id=' + container);
                     log(dialog);
@@ -389,7 +414,8 @@ export function addActionCloseAll(className = '.actionClose') {
     log(loadText);
     loadText.forEach(async (item) => {
         log('addActionCloseAll id= ' + item.id);
-        item.addEventListener("click", () => {
+        addListenerElement(item, (e) => {
+        //item.addEventListener("click", () => {
           const dialog = document.getElementById(item.dataset.target);  
           log('close dialog listener');
           dialog.close();
