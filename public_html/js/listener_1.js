@@ -424,3 +424,27 @@ export function addActionCloseAll(className = '.actionClose') {
         //addLoadDialog(item.id, item.dataset.target, item.dataset.url, item.dataset.timeout);
     });
 }
+
+/*
+ <button id="confirmDialog" 
+ class="actionConfirm" 
+ data-target="htmx"
+ >Load htmx</button>
+ <dialog id="htmx"></dialog>
+ */
+export function addActionConfirmAll(className = '.actionConfirm') {
+    //log('addLoadTextAll start');
+    let loadText = document.querySelectorAll(className);
+    log(loadText);
+    loadText.forEach(async (item) => {
+        log('addactionConfirmAll id= ' + item.id);
+        addListenerElement(item, (e) => {
+        //item.addEventListener("click", () => {
+          const dialog = document.getElementById(item.dataset.target);  
+          log('Confirm dialog listener');
+          dialog.close();
+        });
+        
+        //addLoadDialog(item.id, item.dataset.target, item.dataset.url, item.dataset.timeout);
+    });
+}

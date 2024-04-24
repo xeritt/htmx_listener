@@ -5,6 +5,20 @@
 
 <div>
   <button class="actionClose" data-target="myDialog" id="cancelBtn" value="cancel" onclick="console.log('close dialog');">Cancel</button>
-  <button id="confirmBtn" value="default">Confirm</button>
+  <button class="actionClose" data-target="myDialog" onclick="testClick()" id="confirmBtn" value="default">Confirm</button>
 </div>
+
+<style>
+#myDialog::backdrop {
+/*    background-color: rgb(4, 4, 16);*/
+    backdrop-filter: blur(5px);
+}    
+
+#myDialog{
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    /*border-radius: 5px;*/
+    border: 1px double gray;
+}    
+    
+</style>
 
